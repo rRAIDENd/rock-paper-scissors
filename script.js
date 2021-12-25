@@ -1,6 +1,5 @@
-function computerPlay(){
+function computerSelection(){
     let index = Math.floor(Math.random() * (3 - 1 + 1) + 1) ;
-
     switch (index){
         case 1: 
             return 'rock';
@@ -16,23 +15,26 @@ function playerSelection(){
     return playerInput.toLowerCase();
 }
 
-function play(computerSelection, playerSelection){
-    if (computerSelection === 'rock' && playerSelection === 'paper'){
+function playRound(){
+    let comp = computerSelection();
+    let playerChoice = playerSelection();
+
+    if (comp === 'rock' && playerChoice === 'paper'){
         console.log('Paper beats rock. Player wins the round!');
         return ('Player wins!');
-    } else if (computerSelection === 'rock' && playerSelection === 'scissors'){
+    } else if (comp === 'rock' && playerChoice === 'scissors'){
         console.log('Rock beats scissors. Computer wins the round!');
         return ('Computer wins!');
-    } else if (computerSelection === 'paper' && playerSelection === 'scissors'){
+    } else if (comp === 'paper' && playerChoice === 'scissors'){
         console.log('Scissors beats paper. Player wins the round!');
         return ('Player wins!');
-    } else if (computerSelection === 'paper' && playerSelection === 'rock'){
+    } else if (comp === 'paper' && playerChoice === 'rock'){
         console.log('Paper beats rock. Computer wins the round!');
         return ('Computer wins!');
-    } else if (computerSelection === 'scissors' && playerSelection === 'rock'){
+    } else if (comp === 'scissors' && playerChoice === 'rock'){
         console.log('Rock beats scissors. Player wins the round!');
         return ('Player wins!');
-    } else if (computerSelection === 'scissors' && playerSelection === 'paper'){
+    } else if (comp === 'scissors' && playerChoice === 'paper'){
         console.log('Scissors beats paper. Computer wins the round!');
         return ('Computer wins!');
     } else {
@@ -44,7 +46,7 @@ function game(){
     let playerScore = 0;
     let computerScore = 0;
 
-    for (let i=1; i <=3; i++){
+    for (let i=1; i <=5; i++){
         switch (play(computerPlay(),playerSelection())){
             case ('Player wins!'):
                 playerScore += 1;
@@ -69,4 +71,4 @@ function game(){
 
 }
 
-game();
+// playRound();
