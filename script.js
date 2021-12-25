@@ -15,9 +15,9 @@ function playerSelection(){
     return playerInput.toLowerCase();
 }
 
-function playRound(){
+function playRound(playerSelection){
     let comp = computerSelection();
-    let playerChoice = playerSelection();
+    let playerChoice = playerSelection;
 
     if (comp === 'rock' && playerChoice === 'paper'){
         console.log('Paper beats rock. Player wins the round!');
