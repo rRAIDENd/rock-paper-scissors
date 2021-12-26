@@ -6,44 +6,84 @@ Include notes
 */
 
 
+// starts 1 round
+function startRound(selection){
+    // resetDOM(); //reset DOM to original state
+    let comp = computerSelection(); //calls function to generate random choice
+    // let comp = 'rock';
+    let whoWon;
+    document.querySelector('.player').textContent = 'Player: ' + selection;
+    document.querySelector('.comp').textContent = 'Comp: ' + comp;
+    console.log('Comp: ' + comp);
+    console.log('Player: ' + selection);
 
-
-
-function getButtonValue(e){
-    let selection = (e.target.value);
-    let comp= 'paper';
-    console.log(selection);
 
     if (comp === 'rock' && selection === 'paper'){
-        console.log('Paper beats rock. Player wins the round!');
-        return ('Player wins!');
+        whoWon = 'player';
     } else if (comp === 'rock' && selection === 'scissors'){
-        console.log('Rock beats scissors. Computer wins the round!');
-        return ('Computer wins!');
+        whoWon = 'comp';
     } else if (comp === 'paper' && selection === 'scissors'){
-        console.log('Scissors beats paper. Player wins the round!');
-        return ('Player wins!');
+        whoWon = 'player';
     } else if (comp === 'paper' && selection === 'rock'){
-        console.log('Paper beats rock. Computer wins the round!');
-        return ('Computer wins!');
+        whoWon = 'comp';
     } else if (comp === 'scissors' && selection === 'rock'){
-        console.log('Rock beats scissors. Player wins the round!');
-        return ('Player wins!');
+        whoWon = 'player';
     } else if (comp === 'scissors' && selection === 'paper'){
-        console.log('Scissors beats paper. Computer wins the round!');
-        return ('Computer wins!');
+        whoWon = 'comp';
     } else {
-        console.log('Tie!');
+        whoWon = 'tie';
     } 
+
+    updateResult(whoWon);
+}
+
+// generate int, convert int to choice and return
+function computerSelection(){
+    let index = Math.floor(Math.random() * (3 - 1 + 1) + 1) ;
+    switch (index){
+        case 1: 
+            return 'rock';
+        case 2:
+            return 'paper';
+        case 3:
+            return 'scissors';
+    }
+}
+
+// update result and return result
+function updateResult(result){
+    if (result === 'player'){
+        document.querySelector('.result').textContent = 'Player wins the round!';
+        console.log('Player wins the round!');
+    } else if (result === 'comp'){
+        document.querySelector('.result').textContent = 'Computer wins the round!';
+        console.log('Computer wins the round!');
+    } else if (result === 'tie'){
+        document.querySelector('.result').textContent = 'Tie!';
+        console.log('TIE!');
+    }
+}
+
+function resetDOM(){
+    document.querySelector('.player').textContent = '-';
+    document.querySelector('.comp').textContent = '-';
+    document.querySelector('.result').textContent = '-!';
+}
+
+// Everytime player clicks button it starts round. Pull button value and compare to comp selection
+function getButtonValue(e){
+    let selection = (e.target.value);
+    // console.log('Player: ' + selection);
+    startRound(selection);
+
 
 }
 
 const buttons = Array.from(document.querySelectorAll('button'));
 
+// apply eventListener to all buttons
 buttons.forEach((button) =>{
     button.addEventListener('click', getButtonValue);
 });
 
-function testRound(playerSelection){
-    
-}
+
