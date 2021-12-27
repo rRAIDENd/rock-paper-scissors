@@ -5,6 +5,9 @@ Include notes
 3. update winner of round
 */
 
+//global val for player and comp scores
+let compScore = 0;
+let playerScore = 0;
 
 // starts 1 round
 function startRound(selection){
@@ -35,6 +38,18 @@ function startRound(selection){
     } 
 
     updateResult(whoWon);
+    // display score
+    document.querySelector('.score').textContent = 'player: ' + playerScore + '\n' + 'Comp: ' + compScore;
+    if (playerScore == 5){
+        alert('Player Wins!');
+        resetDOM();
+    } else if ( compScore == 5){
+        alert('Comp Wins!');
+        resetDOM();
+    } else{
+        console.log('player: ' + playerScore + '\n' + 'Comp: ' + compScore);
+    }
+    
 }
 
 // generate int, convert int to choice and return
@@ -50,12 +65,14 @@ function computerSelection(){
     }
 }
 
-// update result and return result
+// update result and score then display 
 function updateResult(result){
     if (result === 'player'){
         document.querySelector('.result').textContent = 'Player wins the round!';
         console.log('Player wins the round!');
+        return playerScore += 1;
     } else if (result === 'comp'){
+        compScore += 1;
         document.querySelector('.result').textContent = 'Computer wins the round!';
         console.log('Computer wins the round!');
     } else if (result === 'tie'){
@@ -67,15 +84,30 @@ function updateResult(result){
 function resetDOM(){
     document.querySelector('.player').textContent = '-';
     document.querySelector('.comp').textContent = '-';
-    document.querySelector('.result').textContent = '-!';
+    document.querySelector('.result').textContent = '-';
+    document.querySelector('.score').textContent = '-'
+
+    // resets score
+    playerScore = 0;
+    compScore = 0;
 }
 
 // Everytime player clicks button it starts round. Pull button value and compare to comp selection
 function getButtonValue(e){
     let selection = (e.target.value);
-    // console.log('Player: ' + selection);
     startRound(selection);
+ 
+}
 
+// display image based on button value
+function showImage(e){
+    let clicked = (e.target.value);
+    const player = document.querySelector('.player-selection');
+    const comp = document.querySelector('.comp-selection');
+
+    if (clicked == 'rock'){
+        player.src = './images/wp2001122-dwayne-johnson-2017-wallpapers.jpg';
+    }
 
 }
 
@@ -84,6 +116,7 @@ const buttons = Array.from(document.querySelectorAll('button'));
 // apply eventListener to all buttons
 buttons.forEach((button) =>{
     button.addEventListener('click', getButtonValue);
+    button.addEventListener('click', showImage);
 });
 
 
