@@ -41,6 +41,7 @@ function startRound(selection){
     // display score
     document.querySelector('.score').textContent = 'player: ' + playerScore + '\n' + 'Comp: ' + compScore;
     if (playerScore == 5){
+        document.querySelector('.full').play();
         alert('Player Wins!');
         resetDOM();
     } else if ( compScore == 5){
@@ -107,10 +108,12 @@ function getButtonValue(e){
 function showImage(e){
     let clicked = (e.target.value);
     const player = document.querySelector('.player-selection');
+    const audio = document.querySelector('.rap');
 
     switch (clicked){
         case 'rock':
             player.src = './images/the-rock.jpg';
+            audio.play();
             break;
         case 'paper':
             player.src = './images/paper.jpg';
