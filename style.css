@@ -1,19 +1,33 @@
-*{
-    font-size: 5vh;
+body{
+    margin: 0;
+    padding: 0;
+    
 }
 
-body{
-    text-align: center;
-    padding-top: 1em;
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+    width: 100vw;
+    height: 100vh;
+
+    font-size: 2vw;
+}
+
+button{
+    font-size: 3vw;
 }
 
 .display-selection{
     display: flex;
     justify-content: center;
-    gap: 1em;
+    gap: 4em;
+    flex-wrap: wrap ;
 }
 
 img{
-    width: 10em;
-    height: auto;
+    min-width: 10vw;
+    height: 30vh;
 }

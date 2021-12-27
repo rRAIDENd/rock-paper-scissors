@@ -54,13 +54,17 @@ function startRound(selection){
 
 // generate int, convert int to choice and return
 function computerSelection(){
+    const comp = document.querySelector('.comp-selection');
     let index = Math.floor(Math.random() * (3 - 1 + 1) + 1) ;
     switch (index){
         case 1: 
+            comp.src = './images/the-rock.jpg'
             return 'rock';
         case 2:
+            comp.src = './images/paper.jpg'
             return 'paper';
         case 3:
+            comp.src = './images/scissors-1.jpg'
             return 'scissors';
     }
 }
@@ -103,11 +107,18 @@ function getButtonValue(e){
 function showImage(e){
     let clicked = (e.target.value);
     const player = document.querySelector('.player-selection');
-    const comp = document.querySelector('.comp-selection');
 
-    if (clicked == 'rock'){
-        player.src = './images/wp2001122-dwayne-johnson-2017-wallpapers.jpg';
-    }
+    switch (clicked){
+        case 'rock':
+            player.src = './images/the-rock.jpg';
+            break;
+        case 'paper':
+            player.src = './images/paper.jpg';
+            break;
+        case 'scissors':
+            player.src = './images/scissors-1.jpg';
+            break;
+    }   
 
 }
 
@@ -115,8 +126,9 @@ const buttons = Array.from(document.querySelectorAll('button'));
 
 // apply eventListener to all buttons
 buttons.forEach((button) =>{
-    button.addEventListener('click', getButtonValue);
     button.addEventListener('click', showImage);
+    button.addEventListener('click', getButtonValue);
+    
 });
 
 
